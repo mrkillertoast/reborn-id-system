@@ -7,17 +7,11 @@ import { Page } from '@AthenaClient/webview/page';
 let page: Page;
 
 function init() {
-    console.log('test even here?');
     page = new AthenaClient.webview.Page({
         name: 'RebornIdSystem',
         callbacks: {
-            onReady: async () => {
-                // AthenaClient.webview.emit('loading-something-event');
-                console.log('Test do i get it?');
-            },
-            onClose: () => {
-                // Do something when the page is closed...
-            },
+            onReady: async () => {},
+            onClose: () => {},
         },
         keybind: {
             key: 186, // The Letter U
@@ -63,9 +57,5 @@ function init() {
     //    }
     // });
 }
-
-alt.on('keyup', (e) => {
-    console.log(e);
-});
 
 onTicksStart.add(init);

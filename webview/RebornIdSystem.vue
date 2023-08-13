@@ -1,9 +1,14 @@
 <template>
-    <div class="make-big">
-        <p>{{ test }}</p>
-        <br />
-        <p>Times Clicked: {{ count }}</p>
-        <button @click="clickButtonEvent">Click Me!</button>
+    <div class="id-card">
+        <div class="id-card-elements">
+            <div class="id-card-picture">
+                <div class="placeholder-image"></div>
+            </div>
+            <div class="id-card-text">
+                <h2>Joe Doe</h2>
+                <p>Random City / 29.06.2023</p>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -25,7 +30,6 @@ function clickButtonEvent() {
 // }
 
 onMounted(() => {
-    console.log('Bind events here!');
     // WebViewEvents.on('your-event-name', () => {})
 
     // Always make sure that this is emitted last in your mount function
@@ -35,8 +39,28 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.make-big {
-    font-size: 24px;
+.id-card {
     color: red;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 2%;
+    background-color: green;
+    width: 20vw;
+    height: 15vh;
+}
+
+.id-card > .id-card-elements {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    height: 15vh;
+}
+
+.id-card > .id-card-elements > .id-card-picture {
+    width: 5vw;
+    height: 10vh;
+    background-color: red;
+    margin: 15%;
 }
 </style>
