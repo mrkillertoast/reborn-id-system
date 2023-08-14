@@ -1,5 +1,5 @@
 export const IDSystemConfig = {
-    TRANSLATIONS: {
+    WEBVIEW: {
         ID_CARD_HEADER: 'Los Santos Citizen Administration | State of San Andreas',
         ID_CARD_NUMBER: 'No.',
         LAST_NAME: 'Lastname',
@@ -8,5 +8,8 @@ export const IDSystemConfig = {
         DATE_OF_ISSUE: 'Date of Issue',
         GENDER: 'SEX',
         OPTAINED_LICENSES: 'Optained Licenses',
+    },
+    NOTIFICATION: {
+        GENERATING_FAILED: 'Failed to generate your ID, please try again',
     },
 };

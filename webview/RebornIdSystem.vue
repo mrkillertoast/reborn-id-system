@@ -1,7 +1,7 @@
 <template>
     <div class="id-card">
         <span class="id-card-header"
-            ><center>{{ IDSystemConfig.TRANSLATIONS.ID_CARD_HEADER }}</center>
+            ><center>{{ IDSystemConfig.WEBVIEW.ID_CARD_HEADER }}</center>
         </span>
         <div class="id-card-elements">
             <div class="id-card-picture">
@@ -9,20 +9,18 @@
             </div>
             <div class="id-card-text">
                 <div class="id-card-grid">
-                    <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.TRANSLATIONS.LAST_NAME }}:
-                    </div>
+                    <div class="id-card-text-element id-card-text-state">{{ IDSystemConfig.WEBVIEW.LAST_NAME }}:</div>
                     <div class="id-card-text-element id-card-text-pinfo">Wilson</div>
                     <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.TRANSLATIONS.FIRST_NAME }}
+                        {{ IDSystemConfig.WEBVIEW.FIRST_NAME }}
                     </div>
                     <div class="id-card-text-element id-card-text-pinfo">Stan</div>
                     <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.TRANSLATIONS.DATE_OF_BIRTH }}
+                        {{ IDSystemConfig.WEBVIEW.DATE_OF_BIRTH }}
                     </div>
                     <div class="id-card-text-element id-card-text-pinfo">10.10.1000</div>
                     <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.TRANSLATIONS.GENDER }}
+                        {{ IDSystemConfig.WEBVIEW.GENDER }}
                     </div>
                     <div class="id-card-text-element id-card-text-pinfo">Male</div>
                 </div>
