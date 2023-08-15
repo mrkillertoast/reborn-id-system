@@ -2,10 +2,13 @@ export const RebornIdSystemEvents = {
     ClientServer: {},
     ServerClient: {
         OPEN_CITYHALL_WEBVIEW: 'rebornidsystem:servertoclient:cityhall:open',
+        OPEN_ID_WEBVIEW: 'rebornidsystem:servertoclient:id:open',
     },
-    ClientToWebView: {},
+    ClientToWebView: {
+        LOAD_ID_DATA: 'rebornidsytem:clienttowebview:id:loaddata',
+    },
     ServerToWebView: {
-        NEW_ID_CREATION_SUCCESS: 'rebornidsyste:servertowebview:cityhall:idcreationsuccess',
+        NEW_ID_CREATION_SUCCESS: 'rebornidsystem:servertowebview:cityhall:idcreationsuccess',
     },
     WebViewToClient: {},
     WebViewToServer: {

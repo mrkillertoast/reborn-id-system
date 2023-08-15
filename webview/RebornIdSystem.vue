@@ -10,24 +10,24 @@
             <div class="id-card-text">
                 <div class="id-card-grid">
                     <div class="id-card-text-element id-card-text-state">{{ IDSystemConfig.WEBVIEW.LAST_NAME }}:</div>
-                    <div class="id-card-text-element id-card-text-pinfo">Wilson</div>
+                    <div class="id-card-text-element id-card-text-pinfo">{{ lastName }}</div>
                     <div class="id-card-text-element id-card-text-state">
                         {{ IDSystemConfig.WEBVIEW.FIRST_NAME }}
                     </div>
-                    <div class="id-card-text-element id-card-text-pinfo">Stan</div>
+                    <div class="id-card-text-element id-card-text-pinfo">{{ firstName }}</div>
                     <div class="id-card-text-element id-card-text-state">
                         {{ IDSystemConfig.WEBVIEW.DATE_OF_BIRTH }}
                     </div>
-                    <div class="id-card-text-element id-card-text-pinfo">10.10.1000</div>
+                    <div class="id-card-text-element id-card-text-pinfo">{{ dateOfBirth }}</div>
                     <div class="id-card-text-element id-card-text-state">
                         {{ IDSystemConfig.WEBVIEW.GENDER }}
                     </div>
-                    <div class="id-card-text-element id-card-text-pinfo">Male</div>
+                    <div class="id-card-text-element id-card-text-pinfo">{{ gender }}</div>
                 </div>
             </div>
         </div>
         <div class="id-card-footer id-card-grid">
-            <div class="id-card-signature">John Doe</div>
+            <div class="id-card-signature">{{ firstName }} {{ lastName }}</div>
             <div class="id-card-licences">
                 <p></p>
             </div>
@@ -39,15 +39,27 @@
 import { ref, onMounted } from 'vue';
 import WebViewEvents from '@ViewUtility/webViewEvents';
 import { IDSystemConfig } from '../shared/config';
+import { RebornIdSystemEvents } from '../shared/viewEvents';
 
 // You can also make a function that emits to the server from the WebView
 // function emitToServer() {
 //     WebViewEvents.emit('someEvent', 'someValue');
 // }
+let firstName = ref('');
+let lastName = ref('');
+let dateOfBirth = ref('');
+let gender = ref('');
+let idNumber = ref('');
 
 onMounted(() => {
     // WebViewEvents.on('your-event-name', () => {})
-
+    WebViewEvents.on(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, (idData) => {
+        firstName = idData.firstName;
+        lastName = idData.lastName;
+        dateOfBirth = idData.playerDateOfBirth;
+        gender = idData.playerGender;
+        idNumber = idData.idNumber;
+    });
     // Always make sure that this is emitted last in your mount function
     // This should always match the name of your Vue file
     WebViewEvents.emitReady('RebornIdSystem');
