@@ -4,24 +4,30 @@ import * as AthenaClient from '@AthenaClient/api';
 import { onTicksStart } from '@AthenaClient/events/onTicksStart';
 import { Page } from '@AthenaClient/webview/page';
 import { RebornIdSystemEvents } from '../shared/viewEvents';
+import { IIdData } from '../shared/interface/IIdData';
 
 let pageIdCard: Page;
 let pageCityHall: Page;
+let idData: IIdData;
 
 function init() {
     pageIdCard = new AthenaClient.webview.Page({
         name: 'RebornIdSystem',
         callbacks: {
-            onReady: async () => {},
-            onClose: () => {},
+            onReady: () => {
+                AthenaClient.webview.emit(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, idData);
+            },
+            onClose: () => {
+                idData = null;
+            },
         },
-        keybind: {
-            key: 186, // The Letter U
-            useSameKeyToClose: true,
-            description: 'RebornIdSystem',
-            identifier: 'RebornIdSystem',
-            allowInSpecificPage: 'RebornIdSystem',
-        },
+        // keybind: {
+        //     key: 186, // The Letter U
+        //     useSameKeyToClose: true,
+        //     description: 'RebornIdSystem',
+        //     identifier: 'RebornIdSystem',
+        //     allowInSpecificPage: 'RebornIdSystem',
+        // },
         options: {
             onOpen: {
                 focus: true,
@@ -76,6 +82,11 @@ function init() {
         if (typeof pageCityHall !== 'undefined') {
             pageCityHall.open();
         }
+    });
+
+    alt.onServer(RebornIdSystemEvents.ServerClient.OPEN_ID_WEBVIEW, (...args) => {
+        idData = args[0];
+        pageIdCard.open();
     });
 
     // You can also manually open the page without a keybind
