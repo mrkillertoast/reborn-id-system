@@ -3,11 +3,13 @@ import * as native from 'natives';
 import * as AthenaClient from '@AthenaClient/api';
 import { onTicksStart } from '@AthenaClient/events/onTicksStart';
 import { Page } from '@AthenaClient/webview/page';
+import { RebornIdSystemEvents } from '../shared/viewEvents';
 
-let page: Page;
+let pageIdCard: Page;
+let pageCityHall: Page;
 
 function init() {
-    page = new AthenaClient.webview.Page({
+    pageIdCard = new AthenaClient.webview.Page({
         name: 'RebornIdSystem',
         callbacks: {
             onReady: async () => {},
@@ -40,6 +42,40 @@ function init() {
                 enablePauseMenu: true,
             },
         },
+    });
+
+    pageCityHall = new AthenaClient.webview.Page({
+        name: 'RebornIdSystemCityHall',
+        callbacks: {
+            onReady: async () => {},
+            onClose: () => {},
+        },
+        options: {
+            onOpen: {
+                focus: true,
+                hideHud: true,
+                hideOverlays: true,
+                setIsMenuOpenToTrue: true,
+                showCursor: true,
+                disableControls: 'all',
+                disablePauseMenu: true,
+            },
+            onClose: {
+                hideCursor: true,
+                showHud: true,
+                showOverlays: true,
+                unfocus: true,
+                setIsMenuOpenToFalse: true,
+                enableControls: true,
+                enablePauseMenu: true,
+            },
+        },
+    });
+
+    alt.onServer(RebornIdSystemEvents.ServerClient.OPEN_CITYHALL_WEBVIEW, (playerData: alt.Player) => {
+        if (typeof pageCityHall !== 'undefined') {
+            pageCityHall.open();
+        }
     });
 
     // You can also manually open the page without a keybind
