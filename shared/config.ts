@@ -8,16 +8,16 @@ export const IDSystemConfig = {
         DATE_OF_ISSUE: 'Date of Issue',
         GENDER: 'SEX',
         OPTAINED_LICENSES: 'Optained Licenses',
+        CUSTOM_EVENT_NAME: 'Show',
+
     },
     NOTIFICATION: {
         GENERATING_FAILED: 'Failed to generate your ID, please try again',
         USER_NOT_FULLY_LOGGED_IN: 'User is not fully logged in yet, try again',
         PLAYER_NOT_FOUND: 'Player matching the ID not found!',
     },
-    LOCATION: {
+    CONFIG: {
         CITYHALL_LOCATION: { x: -545.3010864257812, y: -204.27691650390625, z: 37.211 },
-    },
-    ITEM: {
-        CUSTOM_EVENT_NAME: 'Show',
+        AUTOCLOSE_TIMER: 30000 //Value in ms, indicates how long the id is shown.
     },
 };
