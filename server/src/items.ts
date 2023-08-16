@@ -33,7 +33,7 @@ const defaultIdCard: BaseItem = {
     },
     customEventsToCall: [
         {
-            name: IDSystemConfig.ITEM.CUSTOM_EVENT_NAME,
+            name: IDSystemConfig.WEBVIEW.CUSTOM_EVENT_NAME,
             eventToCall: RebornIdSystemEvents.ServerClient.OPEN_CITYHALL_WEBVIEW,
         },
     ],
