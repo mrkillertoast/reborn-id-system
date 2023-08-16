@@ -75,6 +75,12 @@ function setData(idData: any) {
   idNumber = idData.idNumber;
 }
 
+function autoClose(time: number) {
+  setTimeout(function(time:number) => {
+    WebViewEvents.emitClose();
+  }, time);
+}
+
 onMounted(() => {
   // WebViewEvents.on('your-event-name', () => {})
   WebViewEvents.on(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, setData);

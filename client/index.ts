@@ -16,6 +16,7 @@ function init() {
         callbacks: {
             onReady: () => {
                 AthenaClient.webview.emit(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, idData);
+                AthenaClient.webview.emit(RebornIdSystemEvents.ClientToWebView.START_TIMER, time)
             },
             onClose: () => {
                 idData = null;
