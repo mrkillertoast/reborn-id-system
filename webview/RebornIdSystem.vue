@@ -1,38 +1,52 @@
 <template>
-    <div class="id-card">
-        <span class="id-card-header"
-            ><center>{{ IDSystemConfig.WEBVIEW.ID_CARD_HEADER }}</center>
-        </span>
-        <div class="id-card-elements">
-            <div class="id-card-picture">
-                <img src="/plugins/avatar-placeholder.png" width="150" height="150" />
-            </div>
-            <div class="id-card-text">
-                <div class="id-card-grid">
-                    <div class="id-card-text-element id-card-text-state">{{ IDSystemConfig.WEBVIEW.LAST_NAME }}:</div>
-                    <div class="id-card-text-element id-card-text-pinfo">{{ lastName }}</div>
-                    <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.WEBVIEW.FIRST_NAME }}
-                    </div>
-                    <div class="id-card-text-element id-card-text-pinfo">{{ firstName }}</div>
-                    <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.WEBVIEW.DATE_OF_BIRTH }}
-                    </div>
-                    <div class="id-card-text-element id-card-text-pinfo">{{ dateOfBirth }}</div>
-                    <div class="id-card-text-element id-card-text-state">
-                        {{ IDSystemConfig.WEBVIEW.GENDER }}
-                    </div>
-                    <div class="id-card-text-element id-card-text-pinfo">{{ gender }}</div>
-                </div>
-            </div>
+  <div class="id-card">
+    <span class="id-card-header"
+      ><center>{{ IDSystemConfig.WEBVIEW.ID_CARD_HEADER }}</center>
+    </span>
+    <div class="id-card-elements">
+      <div class="id-card-picture">
+        <img
+          src="/plugins/avatar-placeholder.png"
+          width="150"
+          height="150"
+        />
+      </div>
+      <div class="id-card-text">
+        <div class="id-card-grid">
+          <div class="id-card-text-element id-card-text-state">
+            {{ IDSystemConfig.WEBVIEW.LAST_NAME }}:
+          </div>
+          <div class="id-card-text-element id-card-text-pinfo">
+            {{ lastName }}
+          </div>
+          <div class="id-card-text-element id-card-text-state">
+            {{ IDSystemConfig.WEBVIEW.FIRST_NAME }}
+          </div>
+          <div class="id-card-text-element id-card-text-pinfo">
+            {{ firstName }}
+          </div>
+          <div class="id-card-text-element id-card-text-state">
+            {{ IDSystemConfig.WEBVIEW.DATE_OF_BIRTH }}
+          </div>
+          <div class="id-card-text-element id-card-text-pinfo">
+            {{ dateOfBirth }}
+          </div>
+          <div class="id-card-text-element id-card-text-state">
+            {{ IDSystemConfig.WEBVIEW.GENDER }}
+          </div>
+          <div class="id-card-text-element id-card-text-pinfo">
+            {{ gender }}
+          </div>
         </div>
-        <div class="id-card-footer id-card-grid">
-            <div class="id-card-signature">{{ firstName }} {{ lastName }}</div>
-            <div class="id-card-licences">
-                <p></p>
-            </div>
-        </div>
+      </div>
     </div>
+    <div class="id-card-footer id-card-grid">
+      <div class="id-card-signature">{{ firstName }} {{ lastName }}</div>
+      <div class="id-card-licences">
+        <p></p>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -51,18 +65,20 @@ let dateOfBirth = ref('');
 let gender = ref('');
 let idNumber = ref('');
 
+function setData(idData: any) {
+  firstName = idData.firstName;
+  lastName = idData.lastName;
+  dateOfBirth = idData.playerDateOfBirth;
+  gender = idData.playerGender;
+  idNumber = idData.idNumber;
+}
+
 onMounted(() => {
-    // WebViewEvents.on('your-event-name', () => {})
-    WebViewEvents.on(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, (idData) => {
-        firstName = idData.firstName;
-        lastName = idData.lastName;
-        dateOfBirth = idData.playerDateOfBirth;
-        gender = idData.playerGender;
-        idNumber = idData.idNumber;
-    });
-    // Always make sure that this is emitted last in your mount function
-    // This should always match the name of your Vue file
-    WebViewEvents.emitReady('RebornIdSystem');
+  // WebViewEvents.on('your-event-name', () => {})
+  WebViewEvents.on(RebornIdSystemEvents.ClientToWebView.LOAD_ID_DATA, setData);
+  // Always make sure that this is emitted last in your mount function
+  // This should always match the name of your Vue file
+  WebViewEvents.emitReady('RebornIdSystem');
 });
 </script>
 
