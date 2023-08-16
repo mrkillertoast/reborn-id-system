@@ -1,7 +1,9 @@
 <template>
   <div class="id-card">
     <span class="id-card-header"
-      ><center>{{ IDSystemConfig.WEBVIEW.ID_CARD_HEADER }}</center>
+      ><center>
+        {{ IDSystemConfig.WEBVIEW.ID_CARD_HEADER }} | "No."{{ idNumber }}
+      </center>
     </span>
     <div class="id-card-elements">
       <div class="id-card-picture">
